@@ -9,11 +9,11 @@ class CoordinateTranslator:
   def __init__(self):
     self.corsika_to_auger = {
         "phi": lambda phi: phi - 90,
-        "theta": lambda theta: theta
+        "theta": lambda theta: theta +2.66 # account for geomagnetic vs geographic north
     }
     self.corsika_to_grand = {
         "phi": lambda phi: phi,
-        "theta": lambda theta: 180 + theta
+        "theta": lambda theta: 180 + theta # both use geomagnetic north
     }
     self.corsika_to_zhaires = {
         "phi": lambda phi: (phi + 180) % 360,
@@ -21,19 +21,19 @@ class CoordinateTranslator:
     }
     self.auger_to_corsika = {
         "phi": lambda phi: phi + 90,
-        "theta": lambda theta: theta
+        "theta": lambda theta: theta - 2.66 # account for geomagnetic vs geographic north
     }
     self.auger_to_grand = {
-        "phi": lambda phi: phi - 90,
-        "theta": lambda theta: 180 - theta
+        "phi": lambda phi: 90 + phi,
+        "theta": lambda theta: theta  + 2.66 # account for geomagnetic vs geographic north
     }
     self.grand_to_corsika = {
         "phi": lambda phi: phi,
-        "theta": lambda theta: 180 - theta
+        "theta": lambda theta: 180 - theta # both use geomagnetic north
     }
     self.grand_to_auger = {
-        "phi": lambda phi: phi + 90,
-        "theta": lambda theta: 180 - theta
+        "phi": lambda phi: phi - 90,
+        "theta": lambda theta: theta - 2.66 # account for geomagnetic vs geographic north
     }
     self.zhaires_to_corsika = {
         "phi": lambda phi: (phi - 180) % 360,
