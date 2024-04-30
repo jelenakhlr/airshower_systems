@@ -3,7 +3,7 @@
 
 class CoordinateTranslator:
   """
-  This class translates coordinates between CORSIKA, AUGER, and GRAND systems.
+  This class translates coordinates between CORSIKA, ZHAIRES, AUGER, and GRAND systems.
   """
 
   def __init__(self):
@@ -63,15 +63,17 @@ class CoordinateTranslator:
     translation_map = getattr(self, f"{source_system}_to_{target_system}")
     return {key: translation_map[key](coordinates[key]) for key in coordinates}
 
-# Example usage
-translator = CoordinateTranslator()
 
-# Convert from CORSIKA to AUGER
-corsika_coords = {"phi": 45, "theta": 60}
-translated_coords = translator.translate("corsika", "auger", corsika_coords)
-print(translated_coords)
+if __name__ == "__main__":
+  # Example usage
+  translator = CoordinateTranslator()
 
-# Convert from AUGER to GRAND
-auger_coords = {"phi": 30, "theta": 75}
-translated_coords = translator.translate("auger", "grand", auger_coords)
-print(translated_coords)
+  # Convert from CORSIKA to AUGER
+  corsika_coords = {"phi": 45, "theta": 60}
+  translated_coords = translator.translate("corsika", "auger", corsika_coords)
+  print(translated_coords)
+
+  # Convert from AUGER to GRAND
+  auger_coords = {"phi": 30, "theta": 75}
+  translated_coords = translator.translate("auger", "grand", auger_coords)
+  print(translated_coords)
