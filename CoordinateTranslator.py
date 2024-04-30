@@ -8,7 +8,7 @@ class CoordinateTranslator:
 
   def __init__(self):
     self.corsika_to_auger = {
-        "phi": lambda phi: 90 - phi,
+        "phi": lambda phi: phi - 90,
         "theta": lambda theta: theta
     }
     self.corsika_to_grand = {
@@ -20,7 +20,7 @@ class CoordinateTranslator:
         "theta": lambda theta: 180 - theta
     }
     self.auger_to_corsika = {
-        "phi": lambda phi: 90 - phi,
+        "phi": lambda phi: phi + 90,
         "theta": lambda theta: theta
     }
     self.auger_to_grand = {
