@@ -13,7 +13,7 @@ class CoordinateTranslator:
     }
     self.corsika_to_grand = {
         "phi": lambda phi: phi,
-        "theta": lambda lambda theta: 360 - theta
+        "theta": lambda theta: 180 + theta
     }
     self.auger_to_corsika = {
         "phi": lambda phi: 90 - phi,
@@ -25,7 +25,7 @@ class CoordinateTranslator:
     }
     self.grand_to_corsika = {
         "phi": lambda phi: phi,
-        "theta": lambda theta: 360 - theta
+        "theta": lambda theta: 180 - theta
     }
     self.grand_to_auger = {
         "phi": lambda phi: phi + 90,
@@ -56,10 +56,10 @@ translator = CoordinateTranslator()
 
 # Convert from CORSIKA to AUGER
 corsika_coords = {"phi": 45, "theta": 60}
-translated_coords = translator.translate("CORSIKA", "AUGER", corsika_coords)
-print(translated_coords)  # Output: {'phi': 45, 'theta': 60} (no change)
+translated_coords = translator.translate("corsika", "auger", corsika_coords)
+print(translated_coords)
 
 # Convert from AUGER to GRAND
 auger_coords = {"phi": 30, "theta": 75}
-translated_coords = translator.translate("AUGER", "GRAND", auger_coords)
-print(translated_coords)  # Output: {'phi': -60, 'theta': 105}
+translated_coords = translator.translate("auger", "grand", auger_coords)
+print(translated_coords)
