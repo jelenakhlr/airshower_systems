@@ -15,6 +15,10 @@ class CoordinateTranslator:
         "phi": lambda phi: phi,
         "theta": lambda theta: 180 + theta
     }
+    self.corsika_to_zhaires = {
+        "phi": lambda phi: (phi + 180) % 360,
+        "theta": lambda theta: 180 - theta
+    }
     self.auger_to_corsika = {
         "phi": lambda phi: 90 - phi,
         "theta": lambda theta: theta
@@ -29,6 +33,14 @@ class CoordinateTranslator:
     }
     self.grand_to_auger = {
         "phi": lambda phi: phi + 90,
+        "theta": lambda theta: 180 - theta
+    }
+    self.zhaires_to_corsika = {
+        "phi": lambda phi: (phi - 180) % 360,
+        "theta": lambda theta: 180 - theta
+    }
+    self.zhaires_to_grand = {
+        "phi": lambda phi: (phi + 180) % 360,
         "theta": lambda theta: 180 - theta
     }
 
